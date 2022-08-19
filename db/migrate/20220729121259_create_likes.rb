@@ -1,8 +1,10 @@
 class CreateLikes < ActiveRecord::Migration[7.0]
   def change
-    create_join_table :users, :posts, table_name: :likes do |t|
-      t.index :user_id
-      t.index :post_id
+    create_table :likes do |t|
+      t.integer :user_id
+      t.references :likable, polymorphic: true
+      t.timestamps
     end
+    add_index :likes, [:likable_id, :likable_type]
   end
 end

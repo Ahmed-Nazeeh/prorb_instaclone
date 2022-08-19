@@ -5,12 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts
-  has_many :likes
   has_many :comments
+  has_many :likes
 
   validates :username, presence: true
 
-  def like!(post)
-    likes << Like.new(post: post)
-  end
+  # def like!(post)
+  #   likes << Like.new(post: post)
+  # end
 end

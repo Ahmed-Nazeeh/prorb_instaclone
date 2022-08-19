@@ -1,0 +1,10 @@
+
+<%= turbo_stream.update "post-likes" do %>
+<%= button_to "", post_likes_path, 
+                    class: "post-actions-unlike", 
+                    method: :delete %>
+<% end %>
+<%= turbo_stream.update "post-likes-count" do %>
+<%= pluralize(@post_likes.count, "like") %>
+<% end %>
+

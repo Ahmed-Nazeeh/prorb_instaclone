@@ -2,5 +2,23 @@
   <div class="comment">
     <span class="comment-author"><%= comment.user.username %></span>
     <%= comment.body %>
+      <div id="post-actions">
+        <% find_comment_like(post, comment, current_user) %>
+        <% if @found_comment_like.present? %>
+          <div class="comment-likes" >
+            <%= button_to "", post_comment_like_path(post, comment), 
+                              class: "post-actions-unlike",
+                              method: :delete %>
+          </div>
+        <% else %>
+          <div id="comment-likes">
+            <%= button_to "", post_comment_like_path(post, comment),
+                              class: "post-actions-like" %>
+          </div>
+        <% end %>
+        <div class="post-actions-comments" id="comment-likes-count">
+            <%= pluralize(comment.likes.count, "like") %>
+        </div>
+      </div>
   </div>
 <% end %>
