@@ -1,0 +1,15 @@
+
+<%= turbo_stream.update "comment-likes" do %>
+  <%= button_to "", post_comment_like_path, 
+                  class: "post-actions-like" %>
+<% end %>
+
+<%= turbo_stream.update "comment-likes-count" do %>
+  <%= pluralize(@comment_likes.count, "likes") %>
+<% end %>
+
+
+
+
+ 
+

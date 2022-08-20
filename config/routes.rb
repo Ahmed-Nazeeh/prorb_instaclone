@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   devise_for :users
   root "site#index"
 end

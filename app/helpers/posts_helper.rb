@@ -20,6 +20,6 @@ module PostsHelper
                     @found_comment_like = true
             end
         end
-        # byebug
     end
+
 end
