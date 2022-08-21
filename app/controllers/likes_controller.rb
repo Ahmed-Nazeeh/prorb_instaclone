@@ -8,7 +8,7 @@ class LikesController < ApplicationController
       @comment_likes = @comment.likes 
       if @like.save
         respond_to do |format| 
-          format.turbo_stream { render 'likes/comment_create' } 
+          format.turbo_stream { render 'likes/comment_create', locals: { like: @like } } 
         end
       end     
     elsif params[:post_id].present?
@@ -24,17 +24,21 @@ class LikesController < ApplicationController
 
   def destroy
     if params[:comment_id].present?
-      @comment = current_user.likes.find_by(id: params[:comment_id])
+      @comment = Comment.find(params[:comment_id].to_i)
       @like = Like.where(likable_id: params[:comment_id].to_i, user_id: current_user.id)
       @like.each { |like| like.delete if like.likable_type == "Comment" }
       @comment_likes = Comment.find(params[:comment_id]).likes
-      respond_to { |format| format.turbo_stream {render 'likes/comment_destroy'} }
+      respond_to do |format| 
+        format.turbo_stream {render 'likes/comment_destroy', 
+          locals: { like: @like } } 
+      end
     else
       @like = Like.where(likable_id: params[:post_id].to_i, user_id: current_user.id)
       @like.each { |like| like.delete if like.likable_type == "Post"}
       @post_likes = @post.likes
       respond_to do |format| 
-        format.turbo_stream { render 'likes/post_destroy' } 
+        format.turbo_stream { render 'likes/post_destroy', 
+          locals:{ post: @post } } 
       end
     end
   end

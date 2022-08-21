@@ -9,23 +9,24 @@
   <div class="post-actions">
     <%  find_like(post, current_user) %>
     <% if @found_like.present? %>
-      <div id="post-likes">
+      <div id=<%= "post-likes_#{post.id}" %>>
         <%= button_to "", post_likes_path(post), 
                       class: "post-actions-unlike", method: :delete %>
       </div>
     <% else %>
-      <div id="post-likes" >
+      <div id=<%= "post-likes_#{post.id}" %>>
         <%= button_to "", post_likes_path(post), 
                       class: "post-actions-like" %>
       </div>
     <% end %>
-    <div class="post-actions-comments" id="post-likes-count"><%= pluralize(post.likes.count, "likes") %></div>
-    <div class="post-actions-comments" id="post-comments-count"><%= pluralize(post.comments.count, "comment") %></div>
+    <div class="post-actions-comments" id=<%="post-likes-count_#{post.id}"%>><%= pluralize(post.likes.count, "likes") %></div>
+    <div class="post-actions-comments" id=<%="post-comments-count_#{post.id}"%>><%= pluralize(post.comments.count, "comment") %></div>
   </div>
   <div class="post-comments">
-    <div id="comment-form"><%= render partial: "comments/form", locals: { post: post } %></div>
-    <div id="post-comments-list">
+    <div id=<%="comment-form_#{post.id}"%>><%= render partial: "comments/form", locals: { post: post } %></div>
+    <div id=<%="post-comments-list_#{post.id}"%>>
       <%= render partial: "comments/list", locals: { post: post } %>
     </div>
   </div>
 </div>
+<br />

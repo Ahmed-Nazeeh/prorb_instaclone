@@ -1,4 +1,6 @@
 <%= form_with model: Comment.new, url: post_comments_path(post), class: "comment-form" do |f| %>
-  <%= f.text_field :body %>
-  <%= f.submit :comment %>
+  <div class="post-actions">
+    <%= f.text_field :body, size: 40, maxlength: 254 %>
+    <%= f.submit :comment %>
+  </div>
 <% end %>

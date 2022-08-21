@@ -1,8 +1,8 @@
-<%= turbo_stream.update "post-likes" do %>
-    <%= button_to "", post_likes_path(@post), 
+<%= turbo_stream.update  "post-likes_#{@post.id}"  do %>
+    <%= button_to "", post_likes_path, 
                     class: "post-actions-like" %>
 <% end %>
 
-<%= turbo_stream.update "post-likes-count" do %>
+<%= turbo_stream.update "post-likes-count_#{@post.id}" do %>
   <%= pluralize(@post_likes.count, "likes") %>
-<% end %>
+<% end %> 

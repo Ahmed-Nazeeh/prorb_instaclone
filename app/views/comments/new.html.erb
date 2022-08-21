@@ -1,3 +1,3 @@
-<%= turbo_frame_tag "comment-form" do %>
+<%= turbo_frame_tag "comment-form_#{@post.id}" do %>
   <%= render partial: "comments/form", locals: { post: @post } %>
 <% end %>
