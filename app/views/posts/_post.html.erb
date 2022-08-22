@@ -6,8 +6,8 @@
   <div class="post-body">
     <span><%= post.body %></span>
   </div>
-  <div class="post-actions">
-    <%  find_like(post, current_user) %>
+  <div class="post-actions" >
+    <%  find_like(post) %>
     <% if @found_like.present? %>
       <div id=<%= "post-likes_#{post.id}" %>>
         <%= button_to "", post_likes_path(post), 

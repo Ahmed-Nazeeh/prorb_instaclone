@@ -1,10 +1,12 @@
+
+
 <% post.comments.each do |comment| %>
   <div class="comment">
   
     <span class="comment-author"><%= comment.user.username %>:</span>
     <%= comment.body %>
       <div class="post-actions">
-        <% find_comment_like(post, comment, current_user) %>
+        <% find_comment_like(post, comment) %>
         <% if @found_comment_like.present? %>
           <div id=<%="comment-likes_#{comment.id}"%> >
             <%= button_to "", post_comment_like_path(post, comment), 
